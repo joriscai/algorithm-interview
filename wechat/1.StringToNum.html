@@ -1,0 +1,29 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>StringToNum</title>
+</head>
+<body>
+	This is a StringToNum demo.<br/>
+	<input id="str" type="text" placeholder="please input a string"><br/>
+	<button id="calc">calculate</button><br/>
+	<div id="res"></div>
+</body>
+</html>
+<script type="text/javascript">
+	function toInt(_str){
+		var _num;
+		var arr = _str.split(""),
+		len = arr.length;
+		_num = 0;
+		for(var i = 0; i < len; i++){
+			var tmp = String.prototype.charCodeAt.call(arr[i]) - 64;
+			_num = _num + 26 * i + tmp; 
+		}
+		return _num;
+	}
+	var calc = document.querySelector("#calc");
+	calc.addEventListener("click", function(){
+		document.querySelector("#res").innerHTML = toInt(document.querySelector("#str").value);
+	})
+</script>

@@ -1,0 +1,120 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>mergeSortedList</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+	/*
+	 * {val:1,next:Object}
+	 */
+	function mergeSortedList(_firstList, _secondList){
+		var _newList;
+		if(!_firstList.next)
+			return _secondList;
+		else if(!_secondList.next)
+			return _firstList;
+		else if(!_firstList.next && !_secondList.next) 
+			return null;
+
+		var tmp1 = _firstList;
+		var tmp2 = _secondList;
+
+		if (tmp1.val < tmp2.val) {
+			_newList = tmp1;
+			tmp1 = tmp1.next;
+		}else{
+			_newList = tmp2;
+			tmp2 = tmp2.next;
+		}
+
+		var temp = _newList; //临时变量temp的作用
+		while(tmp1 && tmp2){
+			if (tmp1.val <= tmp2.val) {
+				temp.next = tmp1;
+				tmp1 = tmp1.next;
+			}else{
+				temp.next = tmp2;
+				tmp2 = tmp2.next;
+			}
+			temp = temp.next;
+		}
+
+		if (tmp1) {
+			temp.next = tmp1;
+		}
+
+		if (tmp2) {
+			temp.next = tmp2;
+		}
+
+		return _newList;
+	}
+	var obj1 = {
+		val:1,
+		next:{
+			val:2,
+			next:{
+				val:3,
+				next:null
+			}
+		}
+	};
+	var obj2 = {
+		val:1,
+		next:{
+			val:2,
+			next:{
+				val:3,
+				next:null
+			}
+		}
+	};
+	console.log(JSON.stringify(mergeSortedList(obj1, obj2)))
+
+	/*
+	 * {val:1,next:Object}
+	 * recursion method
+	 */
+	function _mergeSortedList(_firstList, _secondList){
+		var _newList;
+		if(!_firstList.next)
+			return _secondList;
+		else if(!_secondList.next)
+			return _firstList;
+
+		if (_firstList.val < _secondList.val) {
+			_newList = _firstList;
+			_newList.next = _mergeSortedList(_firstList.next, _secondList);
+		}else{
+			_newList = _secondList;
+			_newList.next = _mergeSortedList(_firstList, _secondList.next);
+		}
+
+		return _newList;
+	}
+	var obj1 = {
+		val:1,
+		next:{
+			val:2,
+			next:{
+				val:3,
+				next:null
+			}
+		}
+	};
+	var obj2 = {
+		val:1,
+		next:{
+			val:2,
+			next:{
+				val:3,
+				next:null
+			}
+		}
+	};
+	console.log(JSON.stringify(mergeSortedList(obj1, obj2)))
+</script>

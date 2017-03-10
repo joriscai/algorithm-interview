@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>findMiddleNodeLinkedList</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+	/**
+	 * [findMiddleNodeLinkedList description]
+	 * {val:12,next:object}
+	 * @param  {[Object]} _list [description]
+	 * @return {[Object]}       [description]
+	 */
+	function findMiddleNodeLinkedList(_list){
+		var _mid;
+		if (!_list) return null;
+		if (!_list.next) return _list;
+		if (!_list.next.next) return _list;
+
+		var _mid = fast = _list;
+		while(fast && fast.next && fast.next.next){
+			_mid = _mid.next;
+			fast = fast.next.next;
+		}
+		return _mid;
+	}
+	var obj1 = {
+		val:1,
+		next:{
+			val:2,
+			next:{
+				val:3,
+				next:{
+					val:4,
+					next:{
+						val:5,
+						next:{
+							val:6,
+							next:{}
+						}
+					}
+				}
+			}
+		}
+	};
+	console.log(findMiddleNodeLinkedList(obj1))
+</script>

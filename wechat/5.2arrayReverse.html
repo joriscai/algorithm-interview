@@ -1,0 +1,21 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>5.2arrayReverse</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+	function arrayReverse(arr){
+		for (var i = 0; i < arr.length/2; i++) {
+			var tmp = arr[i];
+			arr[i] = arr[arr.length - i -1];
+			arr[arr.length - i -1] = tmp;
+		}
+	}
+	var arr = [1,2,3,4];
+	arrayReverse(arr);
+	console.log(arr)
+</script>
